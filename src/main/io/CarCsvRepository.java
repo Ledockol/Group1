@@ -85,7 +85,7 @@ public class CarCsvRepository {
     private String convertToCsv(Car car) {
         return String.join(DELIMITER,
                 car.getFirm(),
-                String.format("%.1f", car.getEngineVolume()),
+                String.format(Locale.US, "%.1f", car.getEngineVolume()),
                 String.valueOf(car.getYear())
         );
     }
