@@ -83,7 +83,7 @@ public class CarCsvRepository {
     private String convertToCsv(Car car) {
         return String.join(DELIMITER,
                 car.getFirm(),
-                String.valueOf(car.getEngineVolume()),
+                String.format("%.1f", car.getEngineVolume()),
                 String.valueOf(car.getYear())
         );
     }
@@ -96,7 +96,7 @@ public class CarCsvRepository {
         }
 
         String firm = parts[0].trim();
-        int engineVolume = Integer.parseInt(parts[1].trim());
+        float engineVolume = Float.parseFloat(parts[1].trim());
         int year = Integer.parseInt(parts[2].trim());
 
         return Car.builder()
