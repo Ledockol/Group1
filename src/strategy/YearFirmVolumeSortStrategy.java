@@ -1,5 +1,7 @@
 package strategy;
 
+import models.Car;
+
 public class YearFirmVolumeSortStrategy extends AbstractSortStrategy<Car> {
     @Override
     protected int compare(Car item1, Car item2) {

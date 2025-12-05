@@ -1,8 +1,10 @@
+import models.Car;
 import strategy.*;
 import strategy.Even.VolumeEvenSortStrategy;
 import strategy.Even.YearEvenSortStrategy;
 import ui.*;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Main {
@@ -18,14 +20,14 @@ public class Main {
                         new MenuAction("Рандом", () -> System.out.println("Ввод рандомный"))
                 ),
                 MenuCategory.create("Сортировка",
-                        new MenuAction("По году -> Фирме -> Литражу", () -> sortByYear()),
-                        new MenuAction("По фирме -> Году -> Литражу", () -> sortByFirm()),
-                        new MenuAction("По литражу -> Фирме -> Году", () -> sortByEngineVolume()),
-                        new MenuAction("По году (четные)", () -> sortByYearEven()),
-                        new MenuAction("По литражу (четные)", () -> sortByVolumeEven())
+                        new MenuAction("По году -> Фирме -> Литражу", Main::sortByYear),
+                        new MenuAction("По фирме -> Году -> Литражу", Main::sortByFirm),
+                        new MenuAction("По литражу -> Фирме -> Году", Main::sortByEngineVolume),
+                        new MenuAction("По году (четные)", Main::sortByYearEven),
+                        new MenuAction("По литражу (четные)", Main::sortByVolumeEven)
 
                 ),
-                new MenuAction("Вывод", () -> printCars())
+                new MenuAction("Вывод", Main::printCars)
         );
 
         new MenuNavigator(root).run();

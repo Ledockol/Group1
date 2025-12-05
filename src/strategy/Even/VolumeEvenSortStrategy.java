@@ -2,6 +2,7 @@ package strategy.Even;
 
 import java.util.List;
 
+import models.Car;
 
 public class VolumeEvenSortStrategy extends AbstractEvenSortStrategy<Car> {
 

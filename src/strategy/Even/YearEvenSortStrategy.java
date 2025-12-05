@@ -2,6 +2,8 @@ package strategy.Even;
 
 import java.util.List;
 
+import models.Car;
+
 public class YearEvenSortStrategy extends AbstractEvenSortStrategy<Car> {
 
     @Override

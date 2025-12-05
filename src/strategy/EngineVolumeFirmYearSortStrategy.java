@@ -1,5 +1,6 @@
 package strategy;
 
+import models.Car;
 
 public class EngineVolumeFirmYearSortStrategy extends AbstractSortStrategy<Car> {
     @Override
