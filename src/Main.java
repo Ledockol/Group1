@@ -1,93 +1,47 @@
-import models.Car;
 import strategy.*;
 import strategy.Even.VolumeEvenSortStrategy;
 import strategy.Even.YearEvenSortStrategy;
 import ui.*;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Main {
 
-    private static SortContext<Car> sortContext = new SortContext<>();
-    private static List<Car> items = new ArrayList<>();
+    private static final Context context = new Context();
 
     public static void main(String[] args) {
         MenuCategory root = MenuCategory.create("Главное Меню",
                 MenuCategory.create("Заполнить",
-                        new MenuAction("Файл", () -> System.out.println("Ввод из файла")),
-                        new MenuAction("Вручную", () -> System.out.println("Ввод вручную")),
-                        new MenuAction("Рандом", () -> System.out.println("Ввод рандомный"))
+                        new MenuAction("Файл", new LoadCommand(context)),
+                        new MenuAction("Вручную", new InputCarsCommand(context)),
+                        new MenuAction("Рандом", new GenerateCarsCommand(context))
                 ),
                 MenuCategory.create("Сортировка",
-                        new MenuAction("По году -> Фирме -> Литражу", Main::sortByYear),
-                        new MenuAction("По фирме -> Году -> Литражу", Main::sortByFirm),
-                        new MenuAction("По литражу -> Фирме -> Году", Main::sortByEngineVolume),
-                        new MenuAction("По году (четные)", Main::sortByYearEven),
-                        new MenuAction("По литражу (четные)", Main::sortByVolumeEven)
-
+                        new MenuAction(
+                                "По году -> Фирме -> Литражу",
+                                new SortCommand(context, new YearFirmVolumeSortStrategy(), "году")
+                        ),
+                        new MenuAction(
+                                "По фирме -> Году -> Литражу",
+                                new SortCommand(context, new FirmYearVolumeSortStrategy(), "фирме")
+                        ),
+                        new MenuAction(
+                                "По литражу -> Фирме -> Году",
+                                new SortCommand(context, new EngineVolumeFirmYearSortStrategy(), "по литражу")
+                        ),
+                        new MenuAction(
+                                "По году (четные)",
+                                new SortCommand(context, new YearEvenSortStrategy(), "году (четные)")
+                        ),
+                        new MenuAction(
+                                "По литражу (четные)",
+                                new SortCommand(context, new VolumeEvenSortStrategy(), "литражу (четные)")
+                        )
                 ),
-                new MenuAction("Вывод", Main::printCars)
+                MenuCategory.create("Вывод",
+                        new MenuAction("Консоль", new PrintCommand(context)),
+                        new MenuAction("Файл", new SaveCommand(context))
+                )
         );
 
         new MenuNavigator(root).run();
-    }
-
-    private static void sortByYear() {
-        try {
-            sortContext.setStrategy(new YearFirmVolumeSortStrategy());
-            sortContext.doSort(items);
-            System.out.println("Сортировка по году выполнена!");
-        } catch (Exception e) {
-            System.err.println("Ошибка сортировки: " + e.getMessage());
-        }
-    }
-
-    private static void sortByFirm() {
-        try {
-            sortContext.setStrategy(new FirmYearVolumeSortStrategy());
-            sortContext.doSort(items);
-            System.out.println("Сортировка по фирме выполнена!");
-        } catch (Exception e) {
-            System.err.println("Ошибка сортировки: " + e.getMessage());
-        }
-    }
-
-    private static void sortByEngineVolume() {
-        try {
-            sortContext.setStrategy(new EngineVolumeFirmYearSortStrategy());
-            sortContext.doSort(items);
-            System.out.println("Сортировка по литражу выполнена!");
-        } catch (Exception e) {
-            System.err.println("Ошибка сортировки: " + e.getMessage());
-        }
-    }
-
-
-    private static void sortByYearEven() {
-        try {
-            sortContext.setStrategy(new YearEvenSortStrategy());
-            sortContext.doSort(items);
-            System.out.println("Сортировка по году (четные) выполнена!");
-        } catch (Exception e) {
-            System.err.println("Ошибка сортировки: " + e.getMessage());
-        }
-    }
-
-    private static void sortByVolumeEven() {
-        try {
-            sortContext.setStrategy(new VolumeEvenSortStrategy());
-            sortContext.doSort(items);
-            System.out.println("Сортировка по литражу (четные) выполнена!");
-        } catch (Exception e) {
-            System.err.println("Ошибка сортировки: " + e.getMessage());
-        }
-    }
-
-
-    private static void printCars() {
-        for (Car car : items) {
-            System.out.println(car);
-        }
     }
 }
