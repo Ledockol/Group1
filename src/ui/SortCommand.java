@@ -18,9 +18,16 @@ public class SortCommand extends BaseCommand {
 
     @Override
     public void execute() {
+
+        CarStorage storage = getStorage();
+        List<Car> cars = storage.getCars();
+
+        if (cars.isEmpty()) {
+            System.out.println("Список машин пуст, нечего сортировать");
+            return;
+        }
+
         try {
-            CarStorage storage = getStorage();
-            List<Car> cars = storage.getCars();
             strategy.sort(cars);
             storage.setCars(cars);
             System.out.println("Сортировка по " + field + " выполнена!");
