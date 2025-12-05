@@ -27,6 +27,26 @@ public final class Car {
         return year;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return engineVolume == car.engineVolume &&
+                year == car.year &&
+                Objects.equals(firm, car.firm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firm, engineVolume, year);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{firm='" + firm + "', volume=" + engineVolume + ", year=" + year + "}";
+    }
+
     public static CarBuilder builder() {
         return new CarBuilder();
     }
