@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Класс для работы с CSV файлом для объектов Car.
@@ -62,22 +64,20 @@ public class CarCsvRepository {
             return Collections.emptyList();
         }
 
-        Set<Car> uniqueCars = new LinkedHashSet<>();
-
-        List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
-
-        for (String line : lines) {
-            if (line.isBlank()) continue;
-
-            try {
-                Car car = parseFromCsv(line);
-                uniqueCars.add(car);
-            } catch (IllegalStateException | NumberFormatException | IndexOutOfBoundsException e) {
-                System.err.println("Ошибка при чтении строки: " + line + ". Причина: " + e.getMessage());
-            }
+        try (Stream<String> lines = Files.lines(filePath, StandardCharsets.UTF_8)) {
+            return lines
+                    .filter(line -> !line.isBlank())
+                    .map(line -> {
+                        try {
+                            return parseFromCsv(line);
+                        } catch (IllegalStateException | NumberFormatException | IndexOutOfBoundsException e) {
+                            System.err.println("Ошибка при чтении строки: " + line + ". Причина: " + e.getMessage());
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
         }
-
-        return new ArrayList<>(uniqueCars);
     }
 
     private String convertToCsv(Car car) {
