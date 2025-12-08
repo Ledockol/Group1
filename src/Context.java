@@ -22,9 +22,4 @@ class Context implements CarStorage {
     public boolean isEmpty() {
         return cars.isEmpty();
     }
-    @Override
-    public Scanner getInput() {
-        return input;
-    }
-
 }

@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class GenerateCarsCommand extends BaseCommand {
 
+    private final Scanner scanner = new Scanner(System.in);
+
     public GenerateCarsCommand(CarStorage storage) {
         super(storage);
     }
