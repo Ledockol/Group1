@@ -44,7 +44,7 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{firm='" + firm + "', volume=" + engineVolume + ", year=" + year + "}";
+        return "Автомобиль: '" + firm + "', Объем: " + engineVolume + ", Год: " + year + "}";
     }
 
     public static CarBuilder builder() {
