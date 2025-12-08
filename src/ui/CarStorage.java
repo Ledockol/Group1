@@ -10,4 +10,6 @@ public interface CarStorage {
     List<Car> getCars();
 
     boolean isEmpty();
+
+
 }

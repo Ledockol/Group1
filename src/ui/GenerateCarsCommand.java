@@ -5,10 +5,7 @@ import models.Car;
 import java.util.List;
 import java.util.Scanner;
 
-public class GenerateCarsCommand extends BaseCommand {
-
-    private final Scanner scanner = new Scanner(System.in);
-
+public class GenerateCarsCommand extends BaseCommand{
     public GenerateCarsCommand(CarStorage storage) {
         super(storage);
     }
