@@ -1,8 +1,8 @@
 package ui;
 
 import models.Car;
-
 import java.util.List;
+import java.util.Scanner;
 
 public interface CarStorage {
     void setCars(List<Car> cars);
@@ -10,4 +10,7 @@ public interface CarStorage {
     List<Car> getCars();
 
     boolean isEmpty();
+
+    Scanner getInput();
+
 }
