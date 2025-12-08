@@ -1,5 +1,4 @@
 import strategy.*;
-import strategy.Even.VolumeEvenSortStrategy;
 import strategy.Even.YearEvenSortStrategy;
 import ui.*;
 
@@ -30,12 +29,10 @@ public class Main {
                 new MenuAction(
                         "По году (четные)",
                         new SortCommand(context, new YearEvenSortStrategy(), "году (четные)")
-                ),
-                new MenuAction(
-                        "По литражу (четные)",
-                        new SortCommand(context, new VolumeEvenSortStrategy(), "литражу (четные)")
                 )
         );
+
+        MenuAction findAction = new MenuAction("Поиск", new FindCommand(context));
 
         MenuCategory printMenu = MenuCategory.create("Вывод",
                 new MenuAction("Консоль", new PrintCommand(context)),
@@ -45,6 +42,7 @@ public class Main {
         MenuCategory rootMenu = MenuCategory.create("Главное Меню",
                 fillMenu,
                 sortMenu,
+                findAction,
                 printMenu
         );
 
