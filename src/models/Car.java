@@ -32,7 +32,7 @@ public final class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return engineVolume == car.engineVolume &&
+        return Float.compare(engineVolume, car.engineVolume) == 0 &&
                 year == car.year &&
                 Objects.equals(firm, car.firm);
     }
@@ -52,24 +52,36 @@ public final class Car {
     }
 
     public static class CarBuilder {
+        final static int CAR_INVENTION_YEAR = 1885;
+
         private String firm;
-        private float engineVolume;
-        private int year;
+        private Float engineVolume;
+        private Integer year;
 
         private CarBuilder() {
         }
 
-        public CarBuilder firm(String firm) {
+        public CarBuilder setFirm(String firm) {
+            if (firm == null || firm.trim().isEmpty()) {
+                throw new IllegalArgumentException("Firm (фирма) является обязательным полем и не может быть пустым.");
+            }
             this.firm = firm;
             return this;
         }
 
-        public CarBuilder engineVolume(float engineVolume) {
+        public CarBuilder setEngineVolume(float engineVolume) {
+            if (engineVolume <= 0) {
+                throw new IllegalArgumentException("Engine volume (объем двигателя) должен быть положительным числом.");
+            }
             this.engineVolume = engineVolume;
             return this;
         }
 
-        public CarBuilder year(int year) {
+        public CarBuilder setYear(int year) {
+            int currentYear = Year.now().getValue();
+            if (year < CAR_INVENTION_YEAR || year > currentYear) {
+                throw new IllegalArgumentException("Year (год выпуска) должен быть в диапазоне от " + CAR_INVENTION_YEAR + " до " + currentYear + ".");
+            }
             this.year = year;
             return this;
         }
@@ -81,19 +93,14 @@ public final class Car {
          * @throws IllegalStateException если данные не прошли валидацию (например, фирма пуста или объем <= 0)
          */
         public Car build() {
-            if (Objects.isNull(this.firm) || this.firm.trim().isEmpty()) {
-                throw new IllegalStateException("Firm (фирма) является обязательным полем и не может быть пустым.");
+            if (this.firm == null) {
+                throw new IllegalStateException("Невозможно создать автомобиль: поле 'firm' не установлено.");
             }
-
-            if (this.engineVolume <= 0) {
-                throw new IllegalStateException("Engine volume (объем двигателя) должен быть положительным числом.");
+            if (this.engineVolume == null) {
+                throw new IllegalStateException("Невозможно создать автомобиль: поле 'engineVolume' не установлено.");
             }
-
-            final int currentYear = Year.now().getValue();
-            final int earliestYear = 1885;
-
-            if (this.year < earliestYear || this.year > currentYear) {
-                throw new IllegalStateException("Year (год выпуска) должен быть в диапазоне от " + earliestYear + " до " + currentYear + ".");
+            if (this.year == null) {
+                throw new IllegalStateException("Невозможно создать автомобиль: поле 'year' не установлено.");
             }
 
             return new Car(this);

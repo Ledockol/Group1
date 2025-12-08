@@ -100,9 +100,9 @@ public class CarCsvRepository {
         int year = Integer.parseInt(parts[2].trim());
 
         return Car.builder()
-                .firm(firm)
-                .engineVolume(engineVolume)
-                .year(year)
+                .setFirm(firm)
+                .setEngineVolume(engineVolume)
+                .setYear(year)
                 .build();
     }
 }
