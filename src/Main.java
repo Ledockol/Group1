@@ -32,6 +32,8 @@ public class Main {
                 )
         );
 
+        MenuAction findAction = new MenuAction("Поиск", new FindCommand(context));
+
         MenuCategory printMenu = MenuCategory.create("Вывод",
                 new MenuAction("Консоль", new PrintCommand(context)),
                 new MenuAction("Файл", new SaveCommand(context))
@@ -40,6 +42,7 @@ public class Main {
         MenuCategory rootMenu = MenuCategory.create("Главное Меню",
                 fillMenu,
                 sortMenu,
+                findAction,
                 printMenu
         );
 

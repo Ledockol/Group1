@@ -3,7 +3,7 @@ package models;
 import java.util.Objects;
 import java.time.Year;
 
-public final class Car {
+public final class Car implements Comparable<Car> {
 
     private final String firm;
     private final float engineVolume;
@@ -25,6 +25,21 @@ public final class Car {
 
     public int getYear() {
         return year;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        int firmComparison = this.firm.compareTo(car.firm);
+        if (firmComparison != 0) {
+            return firmComparison;
+        }
+
+        int yearComparison = Integer.compare(this.year, car.year);
+        if (yearComparison != 0) {
+            return yearComparison;
+        }
+
+        return Float.compare(this.engineVolume, car.engineVolume);
     }
 
     @Override
