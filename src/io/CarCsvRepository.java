@@ -96,7 +96,7 @@ public class CarCsvRepository {
         }
 
         String firm = parts[0].trim();
-        int engineVolume = Integer.parseInt(parts[1].trim());
+        float engineVolume = Float.parseFloat(parts[1].trim());
         int year = Integer.parseInt(parts[2].trim());
 
         return Car.builder()

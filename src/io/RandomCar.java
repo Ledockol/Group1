@@ -19,7 +19,7 @@ public class RandomCar {
             Car car = Car.builder()
                     .firm(firms[random.nextInt(firms.length)])
                     .year(random.nextInt(1990, 2025))
-                    .engineVolume(random.nextInt(1, 4))
+                    .engineVolume(random.nextFloat()* 4.0f)
                     .build();
 
             cars.add(car);

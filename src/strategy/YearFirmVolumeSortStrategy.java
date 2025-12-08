@@ -9,7 +9,7 @@ public class YearFirmVolumeSortStrategy extends AbstractSortStrategy<Car> {
         if (result == 0) {
             result = item1.getFirm().compareTo(item2.getFirm());
             if (result == 0) {
-                return Integer.compare(item1.getEngineVolume(), item2.getEngineVolume());
+                return Float.compare(item1.getEngineVolume(), item2.getEngineVolume());
             }
         }
         return result;

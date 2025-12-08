@@ -6,7 +6,7 @@ import java.time.Year;
 public final class Car {
 
     private final String firm;
-    private final int engineVolume;
+    private final float engineVolume;
     private final int year;
 
     private Car(CarBuilder builder) {
@@ -19,9 +19,14 @@ public final class Car {
         return firm;
     }
 
-    public int getEngineVolume() {
+    public float getEngineVolume() {
         return engineVolume;
     }
+
+    public String getFormattedEngineVolume() {
+        return String.format("%.1f", engineVolume);
+    }
+
 
     public int getYear() {
         return year;
@@ -44,7 +49,7 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Автомобиль: '" + firm + "', Объем: " + engineVolume + ", Год: " + year + "}";
+        return "Автомобиль: '" + firm + "', Объем: " + getFormattedEngineVolume() + "л" + ", Год: " + year;
     }
 
     public static CarBuilder builder() {
@@ -53,7 +58,7 @@ public final class Car {
 
     public static class CarBuilder {
         private String firm;
-        private int engineVolume;
+        private float engineVolume;
         private int year;
 
         private CarBuilder() {
@@ -64,7 +69,7 @@ public final class Car {
             return this;
         }
 
-        public CarBuilder engineVolume(int engineVolume) {
+        public CarBuilder engineVolume(float engineVolume) {
             this.engineVolume = engineVolume;
             return this;
         }
