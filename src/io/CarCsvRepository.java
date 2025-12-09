@@ -4,6 +4,7 @@ import models.Car;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +21,7 @@ public class CarCsvRepository {
 
     private final Path filePath;
     private static final String DELIMITER = ";";
+    private CarCollection carCollection = new CarCollection();
 
     public CarCsvRepository(String filename) {
         this.filePath = Path.of(filename);
@@ -46,10 +48,17 @@ public class CarCsvRepository {
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
 
-            for (Car car : cars) {
-                writer.write(convertToCsv(car));
-                writer.newLine();
-            }
+
+            cars.stream()
+                    .map(this::convertToCsv)
+                    .forEach(line -> {
+                        try {
+                            writer.write(line);
+                            writer.newLine();
+                        } catch (IOException e) {
+                            throw new UncheckedIOException(e);
+                        }
+                    });
         }
     }
 
@@ -59,24 +68,17 @@ public class CarCsvRepository {
      * @return Список уникальных автомобилей
      * @throws IOException если возникла ошибка чтения
      */
-    public List<Car> load() throws IOException {
+    public CarCollection load() throws IOException {
         if (!Files.exists(filePath)) {
-            return Collections.emptyList();
+            return new CarCollection();
         }
 
         try (Stream<String> lines = Files.lines(filePath, StandardCharsets.UTF_8)) {
             return lines
                     .filter(line -> !line.isBlank())
-                    .map(line -> {
-                        try {
-                            return parseFromCsv(line);
-                        } catch (IllegalStateException | NumberFormatException | IndexOutOfBoundsException e) {
-                            System.err.println("Ошибка при чтении строки: " + line + ". Причина: " + e.getMessage());
-                            return null;
-                        }
-                    })
+                    .map(this::safeParseFromCsv)
                     .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toCollection(CarCollection::new));
         }
     }
 
@@ -86,6 +88,15 @@ public class CarCsvRepository {
                 String.format("%.1f", car.getEngineVolume()),
                 String.valueOf(car.getYear())
         );
+    }
+
+    private Car safeParseFromCsv(String line) {
+        try {
+            return parseFromCsv(line);
+        } catch (IllegalStateException | NumberFormatException | IndexOutOfBoundsException e) {
+            System.err.println("Ошибка при чтении строки: " + line + ". Причина: " + e.getMessage());
+            return null;
+        }
     }
 
     private Car parseFromCsv(String line) {
