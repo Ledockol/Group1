@@ -1,4 +1,4 @@
-package userinterface;
+package iu;
 
 import models.Car;
 import strategy.SortStrategy;

@@ -1,4 +1,4 @@
-package userinterface;
+package iu;
 
 import java.util.List;
 

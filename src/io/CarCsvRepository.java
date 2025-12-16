@@ -1,6 +1,7 @@
-package inputoutput;
+package io;
 
 import models.Car;
+import models.CarCollection;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

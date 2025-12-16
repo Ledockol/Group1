@@ -1,6 +1,6 @@
-package userinterface;
+package iu;
 
-import inputoutput.RandomCar;
+import io.RandomCar;
 import models.Car;
 import java.util.List;
 import java.util.Scanner;

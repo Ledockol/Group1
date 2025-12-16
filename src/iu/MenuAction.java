@@ -1,4 +1,4 @@
-package userinterface;
+package iu;
 
 public class MenuAction extends MenuItem {
     private final Command command;

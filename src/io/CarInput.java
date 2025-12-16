@@ -1,4 +1,4 @@
-package inputoutput;
+package io;
 
 import models.Car;
 

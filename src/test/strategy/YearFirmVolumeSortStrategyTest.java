@@ -29,7 +29,7 @@ public class YearFirmVolumeSortStrategyTest {
             if (sorted.get(i).getYear() > sorted.get(i + 1).getYear()) {
                 throw new RuntimeException("Ошибка сортировки по году");
             }
-            // Проверяем следующий уровень при равенстве лет
+
             else if (sorted.get(i).getYear() == sorted.get(i + 1).getYear()) {
                 checkFirmOrder(i, sorted);
             }
@@ -40,7 +40,7 @@ public class YearFirmVolumeSortStrategyTest {
         if (sorted.get(i).getFirm().compareTo(sorted.get(i + 1).getFirm()) > 0) {
             throw new RuntimeException("Ошибка сортировки по фирме");
         }
-        // Проверяем объем при равенстве фирм
+
         else if (sorted.get(i).getFirm().equals(sorted.get(i + 1).getFirm())) {
             checkVolumeOrder(i, sorted);
         }

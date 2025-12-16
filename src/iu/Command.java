@@ -1,4 +1,4 @@
-package userinterface;
+package iu;
 
 @FunctionalInterface
 public interface Command {

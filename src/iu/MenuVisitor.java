@@ -1,4 +1,4 @@
-package userinterface;
+package iu;
 
 interface MenuVisitor {
     void visit(MenuAction action);

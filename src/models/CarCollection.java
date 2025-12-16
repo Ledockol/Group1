@@ -1,6 +1,4 @@
-package inputoutput;
-
-import models.Car;
+package models;
 
 import java.util.*;
 import java.util.stream.Collectors;
