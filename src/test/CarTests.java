@@ -1,6 +1,6 @@
 package test;
 
-import models.Car;
+import main.models.Car;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

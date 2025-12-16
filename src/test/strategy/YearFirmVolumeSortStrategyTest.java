@@ -1,7 +1,7 @@
 package test.strategy;
 
-import models.Car;
-import strategy.YearFirmVolumeSortStrategy;
+import main.models.Car;
+import main.strategy.YearFirmVolumeSortStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

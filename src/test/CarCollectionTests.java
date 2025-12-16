@@ -1,7 +1,7 @@
 package test;
 
-import models.Car;
-import models.CarCollection;
+import main.models.Car;
+import main.models.CarCollection;
 
 import java.util.Arrays;
 import java.util.List;

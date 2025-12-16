@@ -1,7 +1,7 @@
 package test.strategy;
 
-import models.Car;
-import strategy.even.YearEvenSortStrategy;
+import main.models.Car;
+import main.strategy.even.YearEvenSortStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
