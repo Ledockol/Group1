@@ -78,7 +78,7 @@ public class MenuNavigator implements MenuVisitor {
     @Override
     public void visit(MenuAction action) {
         action.doAction();
-        if(action.isExitToRoot()) {
+        if (action.isExitToRoot()) {
             breadcrumbs.clear();
             currentCategory = root;
         }

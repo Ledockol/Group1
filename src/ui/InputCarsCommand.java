@@ -1,7 +1,7 @@
 package ui;
 
 import io.CarInput;
-import models.Car;
+
 import java.util.Scanner;
 
 public class InputCarsCommand extends BaseCommand {

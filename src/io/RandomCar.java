@@ -1,6 +1,7 @@
 package io;
 
 import models.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +20,7 @@ public class RandomCar {
             Car car = Car.builder()
                     .setFirm(firms[random.nextInt(firms.length)])
                     .setYear(random.nextInt(1990, 2025))
-                    .setEngineVolume(random.nextFloat()* 4.0f)
+                    .setEngineVolume(random.nextFloat() * 4.0f)
                     .build();
 
             cars.add(car);

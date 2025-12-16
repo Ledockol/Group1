@@ -27,7 +27,6 @@ public final class Car implements Comparable<Car> {
         return String.format("%.1f", engineVolume);
     }
 
-
     public int getYear() {
         return year;
     }
@@ -122,6 +121,7 @@ public final class Car implements Comparable<Car> {
             if (this.year == null) {
                 throw new IllegalStateException("Невозможно создать автомобиль: поле 'year' не установлено.");
             }
+
             return new Car(this);
         }
     }

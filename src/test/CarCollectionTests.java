@@ -2,6 +2,7 @@ package test;
 
 import models.Car;
 import models.CarCollection;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -103,6 +104,7 @@ public class CarCollectionTests {
             }
         }
     }
+
     public void testAdd() {
         Car newCar = Car.builder()
                 .setFirm("Mercedes")

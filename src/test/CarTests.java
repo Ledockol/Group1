@@ -1,4 +1,5 @@
 package test;
+
 import models.Car;
 
 import java.text.DecimalFormat;
@@ -153,6 +154,3 @@ public class CarTests {
         return result.equals(expected);
     }
 }
-
-
-

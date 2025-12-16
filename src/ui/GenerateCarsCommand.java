@@ -2,10 +2,11 @@ package ui;
 
 import io.RandomCar;
 import models.Car;
+
 import java.util.List;
 import java.util.Scanner;
 
-public class GenerateCarsCommand extends BaseCommand{
+public class GenerateCarsCommand extends BaseCommand {
     public GenerateCarsCommand(CarStorage storage) {
         super(storage);
     }
@@ -15,7 +16,7 @@ public class GenerateCarsCommand extends BaseCommand{
         try {
             CarStorage storage = getStorage();
 
-            Scanner scanner = new Scanner(System.in); // или используем существующий, если есть
+            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Введите количество автомобилей для генерации:");
 

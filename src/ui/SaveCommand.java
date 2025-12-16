@@ -3,7 +3,6 @@ package ui;
 import io.CarCsvRepository;
 
 import java.io.IOException;
-
 import java.util.Scanner;
 
 public class SaveCommand extends BaseCommand {

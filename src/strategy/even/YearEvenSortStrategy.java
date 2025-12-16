@@ -1,8 +1,8 @@
 package strategy.even;
 
-import java.util.List;
-
 import models.Car;
+
+import java.util.List;
 
 public class YearEvenSortStrategy extends AbstractEvenSortStrategy<Car> {
 

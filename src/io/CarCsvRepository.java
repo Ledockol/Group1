@@ -22,7 +22,6 @@ public class CarCsvRepository {
 
     private final Path filePath;
     private static final String DELIMITER = ";";
-    private CarCollection carCollection = new CarCollection();
 
     public CarCsvRepository(String filename) {
         this.filePath = Path.of(filename);

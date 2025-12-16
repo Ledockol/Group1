@@ -1,6 +1,7 @@
 package ui;
 
 import models.Car;
+
 import java.util.List;
 
 public interface CarStorage {
@@ -9,6 +10,4 @@ public interface CarStorage {
     List<Car> getCars();
 
     boolean isEmpty();
-
-
 }

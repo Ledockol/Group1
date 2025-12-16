@@ -86,6 +86,7 @@ public class CarCollection extends AbstractList<Car> implements RandomAccess {
         );
         return sorted;
     }
+
     public CarCollection sortByFirm() {
         CarCollection sorted = new CarCollection();
         sorted.addAll(
