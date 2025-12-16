@@ -23,6 +23,11 @@ public final class Car implements Comparable<Car> {
         return engineVolume;
     }
 
+    public String getFormattedEngineVolume() {
+        return String.format("%.1f", engineVolume);
+    }
+
+
     public int getYear() {
         return year;
     }
@@ -59,7 +64,7 @@ public final class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        return String.format("Car{firm='%s', volume=%.1f, year=%d}", firm, engineVolume, year);
+        return "Автомобиль: '" + firm + "', Объем: " + getFormattedEngineVolume() + "л" + ", Год: " + year;
     }
 
     public static CarBuilder builder() {
@@ -117,7 +122,6 @@ public final class Car implements Comparable<Car> {
             if (this.year == null) {
                 throw new IllegalStateException("Невозможно создать автомобиль: поле 'year' не установлено.");
             }
-
             return new Car(this);
         }
     }

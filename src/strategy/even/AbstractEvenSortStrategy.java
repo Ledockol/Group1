@@ -1,4 +1,4 @@
-package strategy.Even;
+package strategy.even;
 
 import java.util.ArrayList;
 import java.util.List;

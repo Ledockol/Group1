@@ -1,5 +1,5 @@
 import strategy.*;
-import strategy.Even.YearEvenSortStrategy;
+import strategy.even.YearEvenSortStrategy;
 import ui.*;
 
 public class Main {
