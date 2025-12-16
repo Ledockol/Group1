@@ -1,6 +1,6 @@
 import strategy.*;
-import strategy.Even.YearEvenSortStrategy;
-import ui.*;
+import strategy.even.YearEvenSortStrategy;
+import userinterface.*;
 
 public class Main {
 

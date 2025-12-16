@@ -1,4 +1,4 @@
-package ui;
+package userinterface;
 
 public abstract class MenuItem {
     private final String title;

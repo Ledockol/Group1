@@ -1,4 +1,4 @@
-package ui;
+package userinterface;
 
 import java.util.Scanner;
 import java.util.Stack;

@@ -1,4 +1,4 @@
-package io;
+package inputoutput;
 
 import models.Car;
 
@@ -59,6 +59,16 @@ public class CarCollection extends AbstractList<Car> implements RandomAccess {
         return result;
     }
 
+    public CarCollection filterByFirm(String firm) {
+        CarCollection result = new CarCollection();
+        result.addAll(
+                cars.stream()
+                        .filter(car -> car.getFirm().equalsIgnoreCase(firm))
+                        .collect(Collectors.toList())
+        );
+        return result;
+    }
+
     public CarCollection sortByYear() {
         CarCollection sorted = new CarCollection();
         sorted.addAll(
@@ -78,4 +88,14 @@ public class CarCollection extends AbstractList<Car> implements RandomAccess {
         );
         return sorted;
     }
+    public CarCollection sortByFirm() {
+        CarCollection sorted = new CarCollection();
+        sorted.addAll(
+                cars.stream()
+                        .sorted(Comparator.comparing(Car::getFirm))
+                        .collect(Collectors.toList())
+        );
+        return sorted;
+    }
+
 }

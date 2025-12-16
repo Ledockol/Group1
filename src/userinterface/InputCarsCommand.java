@@ -1,6 +1,6 @@
-package ui;
+package userinterface;
 
-import io.CarInput;
+import inputoutput.CarInput;
 import models.Car;
 
 public class InputCarsCommand extends BaseCommand {

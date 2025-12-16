@@ -1,4 +1,4 @@
-package ui;
+package userinterface;
 
 abstract class BaseCommand implements Command {
     private final CarStorage storage;
