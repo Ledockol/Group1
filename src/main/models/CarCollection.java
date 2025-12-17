@@ -13,6 +13,11 @@ public class CarCollection extends AbstractList<Car> implements RandomAccess {
     }
 
     @Override
+    public Car set(int index, Car car){
+        return cars.set(index, car);
+    }
+
+    @Override
     public int size() {
         return cars.size();
     }
